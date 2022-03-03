@@ -24,6 +24,7 @@ const deleteCustomer = async (id) => {
   if (status == 200) {
     alert("delete successfully");
     getCustomers();
+    getTotalCount();
   } else {
     alert("something Waring");
   }
@@ -31,7 +32,6 @@ const deleteCustomer = async (id) => {
 
 onMounted(() => {
   getCustomers();
-  getTotalCount();
 });
 </script>
 

@@ -32,6 +32,7 @@ const deleteCustomer = async (id) => {
 
 onMounted(() => {
   getCustomers();
+  getTotalCount();
 });
 </script>
 

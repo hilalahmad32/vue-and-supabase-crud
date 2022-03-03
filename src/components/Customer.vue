@@ -5,12 +5,19 @@ import { supabase } from "../supabase";
 import Head from "./Head.vue";
 
 const customers = ref({});
+const total = ref(0);
 const getCustomers = async () => {
-    const { data } = await supabase
-      .from("customers")
-      .select("id,name,email,balance");
-    customers.value = data;
-  
+  const { data } = await supabase
+    .from("customers")
+    .select("id,name,email,balance");
+  customers.value = data;
+};
+
+const getTotalCount = async () => {
+  const { data } = await supabase
+    .from("customers")
+    .select("*", { count: "exact" });
+  total.value = data.length;
 };
 const deleteCustomer = async (id) => {
   const { status } = await supabase.from("customers").delete().eq("id", id);
@@ -22,9 +29,9 @@ const deleteCustomer = async (id) => {
   }
 };
 
-const searchCustomers = async () => {};
 onMounted(() => {
   getCustomers();
+  getTotalCount();
 });
 </script>
 
@@ -34,7 +41,7 @@ onMounted(() => {
     <v-container>
       <v-card class="m-30">
         <div class="d-flex justify-space-between">
-          <v-card-title>Customers (44)</v-card-title>
+          <v-card-title>Customers ({{ total }})</v-card-title>
           <v-card-title>
             <v-btn>
               <router-link to="/create-customer">Add Customer</router-link>

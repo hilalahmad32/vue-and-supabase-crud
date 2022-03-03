@@ -22,7 +22,9 @@ const getCustomerById = async () => {
   console.log(name.value);
 };
 
-const update = async () => {
+const update = async (e) => {
+  e.preventDefault();
+
   if (!name.value || !email.value || !balance.value) {
     alert("Please Fill the field");
   } else {

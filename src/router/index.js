@@ -4,7 +4,7 @@ import CreateCustomer from '../components/CreateCustomer.vue'
 import UpdateCustomer from '../components/UpdateCustomer.vue'
 const routes = [
     {
-        path: '/', component: Customer
+        path: '', component: Customer
     },
     {
         path: '/create-customer', component: CreateCustomer
